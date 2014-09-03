@@ -5,12 +5,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PathEditor")]
+[assembly: AssemblyTitle("Path Editor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Confirmit")]
-[assembly: AssemblyProduct("PathEditor")]
-[assembly: AssemblyCopyright("Copyright © Confirmit 2014")]
+[assembly: AssemblyCompany("EdlinSoftware")]
+[assembly: AssemblyProduct("Path Editor")]
+[assembly: AssemblyCopyright("Copyright © EdlinSoftware 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
