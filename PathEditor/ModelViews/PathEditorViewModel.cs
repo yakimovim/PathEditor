@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using PathEditor.Models;
+using Application = System.Windows.Application;
 
 namespace PathEditor.ModelViews
 {
@@ -60,6 +61,22 @@ namespace PathEditor.ModelViews
                 {
                     PathParts.Remove(SelectedPathPart);
                     SelectedPathPart = null;
+                },
+                arg => SelectedPathPart != null);
+            }
+        }
+
+        public ICommand BrowsePath
+        {
+            get
+            {
+                return new DelegateCommand(arg =>
+                {
+                    var dlg = new FolderBrowserDialog();
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        SelectedPathPart.Path = dlg.SelectedPath;
+                    }
                 },
                 arg => SelectedPathPart != null);
             }

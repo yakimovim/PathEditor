@@ -4,7 +4,7 @@
         Title="{Binding Source={StaticResource localResources}, Path=Title}" 
         Icon="/PathEditor;component/Images/App.png"
         WindowStartupLocation="CenterScreen"
-        Height="306" Width="525">
+        Height="356" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <!--Menu bar-->
@@ -32,11 +32,21 @@
                   SelectionMode="Single" DisplayMemberPath="Path"
                   SelectedItem="{Binding Path=SelectedPathPart, Mode=TwoWay}">
         </ListView>
-        <TextBox Grid.Row="2" Margin="3" Text="{Binding Path=SelectedPathPart.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <!--Path textbox-->
+                <ColumnDefinition Width="*" />
+                <!--Browse button-->
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Margin="5" Text="{Binding Path=SelectedPathPart.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Column="1" Content="{Binding Source={StaticResource localResources}, Path=BrowseButtonText}" 
+                    Style="{StaticResource ButtonStyle}" Command="{Binding BrowsePath}"/>
+        </Grid>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Ok" Style="{StaticResource ButtonStyle}" 
+            <Button Content="{Binding Source={StaticResource localResources}, Path=OkButtonText}" Style="{StaticResource ButtonStyle}" 
                     Command="{Binding SetPath}"/>
-            <Button Content="Cancel" Style="{StaticResource ButtonStyle}" 
+            <Button Content="{Binding Source={StaticResource localResources}, Path=CancelButtonText}" Style="{StaticResource ButtonStyle}" 
                     Command="{Binding Exit}"/>
         </StackPanel>
     </Grid>

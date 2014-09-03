@@ -70,11 +70,38 @@ namespace PathEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string BrowseButtonText {
+            get {
+                return ResourceManager.GetString("BrowseButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButtonText {
+            get {
+                return ResourceManager.GetString("CancelButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove selected path part.
         /// </summary>
         public static string DeleteButtonTooltip {
             get {
                 return ResourceManager.GetString("DeleteButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OkButtonText {
+            get {
+                return ResourceManager.GetString("OkButtonText", resourceCulture);
             }
         }
         
