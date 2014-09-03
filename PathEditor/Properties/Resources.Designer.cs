@@ -70,38 +70,11 @@ namespace PathEditor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click Me.
-        /// </summary>
-        public static string ClickMe {
-            get {
-                return ResourceManager.GetString("ClickMe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Remove selected path part.
         /// </summary>
         public static string DeleteButtonTooltip {
             get {
                 return ResourceManager.GetString("DeleteButtonTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter your name:.
-        /// </summary>
-        public static string EnterYourName {
-            get {
-                return ResourceManager.GetString("EnterYourName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name can&apos;t be empty.
-        /// </summary>
-        public static string NameCantBeEmpty {
-            get {
-                return ResourceManager.GetString("NameCantBeEmpty", resourceCulture);
             }
         }
         

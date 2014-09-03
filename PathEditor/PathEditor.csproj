@@ -71,12 +71,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="ModelViews\MainViewModel.cs" />
     <Compile Include="Properties\LocalResources.cs" />
     <Compile Include="ModelViews\DelegateCommand.cs" />
     <Compile Include="ModelViews\BaseViewModel.cs" />
-    <Compile Include="Views\Support\Validation\StringNotEmptyRule.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

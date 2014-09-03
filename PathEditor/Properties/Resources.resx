@@ -120,17 +120,8 @@
   <data name="AddButtonTooltip" xml:space="preserve">
     <value>Add new path part</value>
   </data>
-  <data name="ClickMe" xml:space="preserve">
-    <value>Click Me</value>
-  </data>
   <data name="DeleteButtonTooltip" xml:space="preserve">
     <value>Remove selected path part</value>
-  </data>
-  <data name="EnterYourName" xml:space="preserve">
-    <value>Enter your name:</value>
-  </data>
-  <data name="NameCantBeEmpty" xml:space="preserve">
-    <value>Name can't be empty</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Path Environment Variable Editor</value>
