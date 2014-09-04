@@ -62,6 +62,7 @@
     <Compile Include="ModelViews\PathEditorViewModel.cs" />
     <Compile Include="ModelViews\PathPartViewModel.cs" />
     <Compile Include="Views\Support\ButtonHelper.cs" />
+    <Compile Include="Views\Support\PathExistenceToBrushConverter.cs" />
     <Compile Include="Views\Support\Validation\ValidationHelper.cs" />
     <Compile Include="Views\Support\WindowHelper.cs" />
     <Page Include="Views\MainWindow.xaml">

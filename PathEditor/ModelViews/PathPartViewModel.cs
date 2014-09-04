@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace PathEditor.ModelViews
 {
@@ -26,6 +27,23 @@ namespace PathEditor.ModelViews
                 {
                     _pathPart = value;
                     OnPropertyChanged();
+                    OnPropertyChanged("Exists");
+                }
+            }
+        }
+
+        public bool Exists
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                try
+                {
+                    return Directory.Exists(Environment.ExpandEnvironmentVariables(Path));
+                }
+                catch
+                {
+                    return false;
                 }
             }
         }
