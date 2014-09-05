@@ -7,6 +7,7 @@
     <Application.Resources>
         <props:LocalResources x:Key="localResources"/>
         <support:PathExistenceToBrushConverter x:Key="PathExistenceConverter"/>
+        <support:PathSelectionToEnabledConverter x:Key="TextBoxEnabledConverter"/>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="MinWidth" Value="80"/>
             <Setter Property="MinHeight" Value="26"/>
