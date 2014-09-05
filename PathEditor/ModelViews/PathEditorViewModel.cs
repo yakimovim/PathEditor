@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using PathEditor.Models;
+using PathEditor.Views.UserControls;
 using Application = System.Windows.Application;
 
 namespace PathEditor.ModelViews
@@ -90,6 +91,21 @@ namespace PathEditor.ModelViews
                 {
                     _repository.SetPathFromParts(PathParts.Select(p => p.Path).ToArray());
                     Application.Current.Shutdown();
+                });
+            }
+        }
+
+        public ICommand AutoComplete
+        {
+            get
+            {
+                return new DelegateCommand(arg =>
+                {
+                    var textBox = (AutoCompleteTextBox) arg;
+
+                    var autoCompleteProvider = AutoCompleteProviderFactory.GetAutoCompleteProvider(textBox.Text);
+
+                    textBox.AppendSelectedText(autoCompleteProvider.GetAutoCompleteText());
                 });
             }
         }

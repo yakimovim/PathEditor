@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using PathEditor.Models;
 
 namespace PathEditor.ModelViews
 {
@@ -35,17 +36,7 @@ namespace PathEditor.ModelViews
         public bool Exists
         {
             [DebuggerStepThrough]
-            get
-            {
-                try
-                {
-                    return Directory.Exists(Environment.ExpandEnvironmentVariables(Path));
-                }
-                catch
-                {
-                    return false;
-                }
-            }
+            get { return Path.ExpandedDirectoryExists(); }
         }
 
         [DebuggerStepThrough]

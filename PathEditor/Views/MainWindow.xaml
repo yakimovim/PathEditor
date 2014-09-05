@@ -1,6 +1,7 @@
 ﻿<Window x:Class="PathEditor.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:PathEditor.Views.UserControls"
         Title="{Binding Source={StaticResource localResources}, Path=Title}" 
         Icon="/PathEditor;component/Images/App.png"
         WindowStartupLocation="CenterScreen"
@@ -39,9 +40,10 @@
                 <!--Browse button-->
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0"  
+            <uc:AutoCompleteTextBox Grid.Column="0"  
                      Style="{StaticResource PathTextBoxStyle}"
-                     Text="{Binding Path=SelectedPathPart.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding Path=SelectedPathPart.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     AutoCompleteCommand="{Binding AutoComplete}"/>
             <Button Grid.Column="1" Content="{Binding Source={StaticResource localResources}, Path=BrowseButtonText}" 
                     Style="{StaticResource ButtonStyle}" Command="{Binding BrowsePath}"/>
         </Grid>

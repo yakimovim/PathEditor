@@ -58,13 +58,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\AutoCompleteProviders.cs" />
     <Compile Include="Models\PathRepository.cs" />
+    <Compile Include="Models\StringExtender.cs" />
     <Compile Include="ModelViews\PathEditorViewModel.cs" />
     <Compile Include="ModelViews\PathPartViewModel.cs" />
     <Compile Include="Views\Support\ButtonHelper.cs" />
     <Compile Include="Views\Support\PathExistenceToBrushConverter.cs" />
     <Compile Include="Views\Support\Validation\ValidationHelper.cs" />
     <Compile Include="Views\Support\WindowHelper.cs" />
+    <Compile Include="Views\UserControls\AutoCompleteTextBox.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
