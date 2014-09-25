@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -11,8 +10,8 @@ namespace PathEditor.Models
 
         public static IAutoCompleteProvider GetAutoCompleteProvider(string text)
         {
-            if(string.IsNullOrEmpty(text))
-            {return Empty;}
+            if (string.IsNullOrEmpty(text))
+            { return Empty; }
 
             var indexOfSeparator = text.LastIndexOf(Path.DirectorySeparatorChar);
 

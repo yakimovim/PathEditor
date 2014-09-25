@@ -41,9 +41,9 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <uc:AutoCompleteTextBox Grid.Column="0"  
-                     Style="{StaticResource PathTextBoxStyle}"
-                     Text="{Binding Path=SelectedPathPart.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                     AutoCompleteCommand="{Binding AutoComplete}" IsEnabled="{Binding SelectedPathPart, Converter={StaticResource TextBoxEnabledConverter}}" />
+                    Style="{StaticResource PathTextBoxStyle}"
+                    Text="{Binding Path=SelectedPathPart.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    AutoCompleteCommand="{Binding AutoComplete}" IsEnabled="{Binding SelectedPathPart, Converter={StaticResource TextBoxEnabledConverter}}" />
             <Button Grid.Column="1" Content="{Binding Source={StaticResource localResources}, Path=BrowseButtonText}" 
                     Style="{StaticResource ButtonStyle}" Command="{Binding BrowsePath}"/>
         </Grid>
