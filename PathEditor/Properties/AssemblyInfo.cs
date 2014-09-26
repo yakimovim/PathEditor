@@ -6,7 +6,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Path Editor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Editor of environment variable PATH")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EdlinSoftware")]
 [assembly: AssemblyProduct("Path Editor")]
