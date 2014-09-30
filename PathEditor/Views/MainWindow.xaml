@@ -28,11 +28,53 @@
                     Command="{Binding DeleteSelectedPathPart}">
                 <Image Source="/PathEditor;component/Images/Delete.png" />
             </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" 
+                    ToolTip="{Binding Source={StaticResource localResources}, Path=UpButtonTooltip}" 
+                    Command="{Binding MovePathPartUp}"
+                    CommandParameter="{Binding ElementName=PartsView}">
+                <Image Source="/PathEditor;component/Images/Up.png" />
+            </Button>
+            <Button Style="{StaticResource ToolbarButtonStyle}" 
+                    ToolTip="{Binding Source={StaticResource localResources}, Path=DownButtonTooltip}" 
+                    Command="{Binding MovePathPartDown}"
+                    CommandParameter="{Binding ElementName=PartsView}">
+                <Image Source="/PathEditor;component/Images/Down.png" />
+            </Button>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding Path=PathParts}" 
-                  SelectionMode="Single" SelectedItem="{Binding Path=SelectedPathPart, Mode=TwoWay}"
-                  ItemTemplate="{StaticResource PathPartDataTemplate}">
-        </ListView>
+        <uc:SortableListView x:Name="PartsView" Grid.Row="1" ItemsSource="{Binding Path=PathParts}"
+                  SelectionMode="Single" SelectedItem="{Binding Path=SelectedPathPart, Mode=TwoWay}">
+            <uc:SortableListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Exists}" Value="False">
+                            <Setter Property="Background" Value="Yellow"  />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </uc:SortableListView.ItemContainerStyle>
+            <uc:SortableListView.View>
+                <GridView>
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Index" Content="{Binding Source={StaticResource localResources}, Path=IndexColumnHeader}"/>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Index}"
+                                           HorizontalAlignment="Stretch" 
+                                           TextAlignment="Center" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Path" Content="{Binding Source={StaticResource localResources}, Path=PathColumnHeader}"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </uc:SortableListView.View>
+        </uc:SortableListView>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <!--Path textbox-->

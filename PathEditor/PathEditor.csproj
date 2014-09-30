@@ -64,11 +64,12 @@
     <Compile Include="ModelViews\PathEditorViewModel.cs" />
     <Compile Include="ModelViews\PathPartViewModel.cs" />
     <Compile Include="Views\Support\ButtonHelper.cs" />
-    <Compile Include="Views\Support\PathExistenceToBrushConverter.cs" />
     <Compile Include="Views\Support\PathSelectionToEnabledConverter.cs" />
     <Compile Include="Views\Support\Validation\ValidationHelper.cs" />
     <Compile Include="Views\Support\WindowHelper.cs" />
     <Compile Include="Views\UserControls\AutoCompleteTextBox.cs" />
+    <Compile Include="Views\UserControls\SortableListView.cs" />
+    <Compile Include="Views\UserControls\SortAdorner.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +120,10 @@
   <ItemGroup>
     <Resource Include="Images\Add.png" />
     <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Down.png" />
+    <Resource Include="Images\Up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

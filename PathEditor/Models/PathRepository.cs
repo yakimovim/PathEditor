@@ -13,7 +13,6 @@ namespace PathEditor.Models
         {
             return ((string)Registry.LocalMachine.OpenSubKey(PathKeyName).GetValue("Path", string.Empty, RegistryValueOptions.DoNotExpandEnvironmentNames))
                 .Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries)
-                .OrderBy(p => p)
                 .ToArray();
         }
 

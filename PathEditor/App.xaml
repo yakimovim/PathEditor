@@ -6,7 +6,6 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <props:LocalResources x:Key="localResources"/>
-        <support:PathExistenceToBrushConverter x:Key="PathExistenceConverter"/>
         <support:PathSelectionToEnabledConverter x:Key="TextBoxEnabledConverter"/>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="MinWidth" Value="80"/>
@@ -24,10 +23,5 @@
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-        <DataTemplate x:Key="PathPartDataTemplate">
-            <Grid Background="{Binding Path=Exists, Converter={StaticResource PathExistenceConverter}}">
-                <TextBlock Margin="2" FontSize="16" Text="{Binding Path=Path}"/>
-            </Grid>
-        </DataTemplate>
     </Application.Resources>
 </Application>

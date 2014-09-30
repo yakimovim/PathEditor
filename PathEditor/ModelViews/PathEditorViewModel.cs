@@ -21,7 +21,7 @@ namespace PathEditor.ModelViews
             if (repository == null) throw new ArgumentNullException("repository");
             _repository = repository;
 
-            PathParts = new ObservableCollection<PathPartViewModel>(_repository.GetPathParts().Select(p => new PathPartViewModel(p)));
+            PathParts = new ObservableCollection<PathPartViewModel>(_repository.GetPathParts().Select((p, i) => new PathPartViewModel(p, i + 1)));
         }
 
         public ObservableCollection<PathPartViewModel> PathParts { get; private set; }
@@ -47,7 +47,7 @@ namespace PathEditor.ModelViews
             {
                 return new DelegateCommand(arg =>
                 {
-                    var newPathPart = new PathPartViewModel("???");
+                    var newPathPart = new PathPartViewModel("???", PathParts.Count + 1);
                     PathParts.Add(newPathPart);
                     SelectedPathPart = newPathPart;
                 });
@@ -65,6 +65,45 @@ namespace PathEditor.ModelViews
                 },
                 arg => SelectedPathPart != null);
             }
+        }
+
+        public ICommand MovePathPartUp
+        {
+            get
+            {
+                return new DelegateCommand(arg =>
+                {
+                    var previousPathPart = PathParts.First(p => p.Index == SelectedPathPart.Index - 1);
+
+                    SwapIndexes(SelectedPathPart, previousPathPart);
+
+                    ((SortableListView) arg).Refresh();
+                },
+                arg => SelectedPathPart != null && SelectedPathPart.Index > 1);
+            }
+        }
+
+        public ICommand MovePathPartDown
+        {
+            get
+            {
+                return new DelegateCommand(arg =>
+                {
+                    var nextPathPart = PathParts.First(p => p.Index == SelectedPathPart.Index + 1);
+
+                    SwapIndexes(SelectedPathPart, nextPathPart);
+
+                    ((SortableListView) arg).Refresh();
+                },
+                arg => SelectedPathPart != null && SelectedPathPart.Index < PathParts.Count);
+            }
+        }
+
+        private void SwapIndexes(PathPartViewModel part1, PathPartViewModel part2)
+        {
+            var index = part1.Index;
+            part1.Index = part2.Index;
+            part2.Index = index;
         }
 
         public ICommand BrowsePath
@@ -89,7 +128,7 @@ namespace PathEditor.ModelViews
             {
                 return new DelegateCommand(arg =>
                 {
-                    _repository.SetPathFromParts(PathParts.Select(p => p.Path).ToArray());
+                    _repository.SetPathFromParts(PathParts.OrderBy(p => p.Index).Select(p => p.Path).ToArray());
                     Application.Current.Shutdown();
                 });
             }

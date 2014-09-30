@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using PathEditor.Models;
 
 namespace PathEditor.ModelViews
@@ -9,12 +8,15 @@ namespace PathEditor.ModelViews
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string _pathPart;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private int _index;
 
         [DebuggerStepThrough]
-        public PathPartViewModel(string pathPart)
+        public PathPartViewModel(string pathPart, int index)
         {
             if (pathPart == null) throw new ArgumentNullException("pathPart");
             _pathPart = pathPart;
+            Index = index;
         }
 
         public string Path
@@ -29,6 +31,21 @@ namespace PathEditor.ModelViews
                     _pathPart = value;
                     OnPropertyChanged();
                     OnPropertyChanged("Exists");
+                }
+            }
+        }
+
+        public int Index
+        {
+            [DebuggerStepThrough]
+            get { return _index; }
+            [DebuggerStepThrough]
+            set
+            {
+                if (_index != value)
+                {
+                    _index = value;
+                    OnPropertyChanged();
                 }
             }
         }

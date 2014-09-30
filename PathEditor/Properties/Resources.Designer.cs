@@ -97,6 +97,24 @@ namespace PathEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move selected path part down.
+        /// </summary>
+        public static string DownButtonTooltip {
+            get {
+                return ResourceManager.GetString("DownButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        public static string IndexColumnHeader {
+            get {
+                return ResourceManager.GetString("IndexColumnHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string OkButtonText {
@@ -106,11 +124,29 @@ namespace PathEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path.
+        /// </summary>
+        public static string PathColumnHeader {
+            get {
+                return ResourceManager.GetString("PathColumnHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path Environment Variable Editor.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move selected path part up.
+        /// </summary>
+        public static string UpButtonTooltip {
+            get {
+                return ResourceManager.GetString("UpButtonTooltip", resourceCulture);
             }
         }
     }
