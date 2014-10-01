@@ -2,16 +2,26 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using PathEditor.Models;
+using PathEditor.Properties;
 using PathEditor.Views.UserControls;
 using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace PathEditor.ModelViews
 {
     internal class PathEditorViewModel : BaseViewModel
     {
+        private enum ActionWithDirectoriesThatNotExist
+        {
+            StoreThemToPath,
+            RemoveThemFromPath,
+            ContinueEditing
+        }
+
         private readonly PathRepository _repository;
         private PathPartViewModel _selectedPathPart;
 
@@ -77,7 +87,7 @@ namespace PathEditor.ModelViews
 
                     SwapIndexes(SelectedPathPart, previousPathPart);
 
-                    ((SortableListView) arg).Refresh();
+                    ((SortableListView)arg).Refresh();
                 },
                 arg => SelectedPathPart != null && SelectedPathPart.Index > 1);
             }
@@ -93,7 +103,7 @@ namespace PathEditor.ModelViews
 
                     SwapIndexes(SelectedPathPart, nextPathPart);
 
-                    ((SortableListView) arg).Refresh();
+                    ((SortableListView)arg).Refresh();
                 },
                 arg => SelectedPathPart != null && SelectedPathPart.Index < PathParts.Count);
             }
@@ -128,9 +138,48 @@ namespace PathEditor.ModelViews
             {
                 return new DelegateCommand(arg =>
                 {
-                    _repository.SetPathFromParts(PathParts.OrderBy(p => p.Index).Select(p => p.Path).ToArray());
+                    var pathParts = PathParts.OrderBy(p => p.Index).AsEnumerable();
+
+                    if (ThereArePathPartsThatNotExist())
+                    {
+                        var requiredAction = AskUserWhatShouldBeDoneWithNotExistingDirectories();
+
+                        switch (requiredAction)
+                        {
+                            case ActionWithDirectoriesThatNotExist.RemoveThemFromPath:
+                                pathParts = pathParts.Where(p => p.Exists);
+                                break;
+                            case ActionWithDirectoriesThatNotExist.ContinueEditing:
+                                return;
+                        }
+                    }
+
+                    _repository.SetPathFromParts(pathParts.Select(p => p.Path).ToArray());
                     Application.Current.Shutdown();
                 });
+            }
+        }
+
+        private bool ThereArePathPartsThatNotExist()
+        {
+            return PathParts.Any(p => !p.Exists);
+        }
+
+        private static ActionWithDirectoriesThatNotExist AskUserWhatShouldBeDoneWithNotExistingDirectories()
+        {
+            var confirmationResult = MessageBox.Show(Resources.RemoveAbsentPathsMessageBoxText,
+                Resources.RemoveAbsentPathsMessageBoxCaption,
+                MessageBoxButton.YesNoCancel,
+                MessageBoxImage.Question);
+
+            switch (confirmationResult)
+            {
+                case MessageBoxResult.Yes:
+                    return ActionWithDirectoriesThatNotExist.RemoveThemFromPath;
+                case MessageBoxResult.No:
+                    return ActionWithDirectoriesThatNotExist.StoreThemToPath;
+                default:
+                    return ActionWithDirectoriesThatNotExist.ContinueEditing;
             }
         }
 
@@ -140,7 +189,7 @@ namespace PathEditor.ModelViews
             {
                 return new DelegateCommand(arg =>
                 {
-                    var textBox = (AutoCompleteTextBox) arg;
+                    var textBox = (AutoCompleteTextBox)arg;
 
                     var autoCompleteProvider = AutoCompleteProviderFactory.GetAutoCompleteProvider(textBox.Text);
 

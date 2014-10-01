@@ -147,4 +147,11 @@
   <data name="UpButtonTooltip" xml:space="preserve">
     <value>Move selected path part up</value>
   </data>
+  <data name="RemoveAbsentPathsMessageBoxCaption" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="RemoveAbsentPathsMessageBoxText" xml:space="preserve">
+    <value>There are path parts which does not exist or not accessible by you.
+Do you want to remove them from PATH?</value>
+  </data>
 </root>

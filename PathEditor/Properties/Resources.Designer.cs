@@ -133,6 +133,25 @@ namespace PathEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        public static string RemoveAbsentPathsMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("RemoveAbsentPathsMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are path parts which does not exist or not accessible by you.
+        ///Do you want to remove them from PATH?.
+        /// </summary>
+        public static string RemoveAbsentPathsMessageBoxText {
+            get {
+                return ResourceManager.GetString("RemoveAbsentPathsMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Path Environment Variable Editor.
         /// </summary>
         public static string Title {
