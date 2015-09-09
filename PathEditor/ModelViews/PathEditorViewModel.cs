@@ -71,9 +71,19 @@ namespace PathEditor.ModelViews
                 return new DelegateCommand(arg =>
                 {
                     PathParts.Remove(SelectedPathPart);
+                    RenumerateParts();
                     SelectedPathPart = null;
                 },
                 arg => SelectedPathPart != null);
+            }
+        }
+
+        private void RenumerateParts()
+        {
+            var count = PathParts.Count;
+            for (int i = 0; i < count; i++)
+            {
+                PathParts[i].Index = i + 1;
             }
         }
 
