@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 
 namespace PathEditor.Views.UserControls
@@ -13,16 +15,41 @@ namespace PathEditor.Views.UserControls
 
         public SortableListView()
         {
-            AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(GridViewColumnHeaderClickedHandler));
+            AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(GridViewColumnHeaderClickedHandler));
+        }
+
+        protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
+        {
+            base.OnItemsSourceChanged(oldValue, newValue);
+
+            SortByFirstColumn();
+        }
+
+        private void SortByFirstColumn()
+        {
+            if (View is GridView)
+            {
+                if (((GridView) View).Columns.Count > 0)
+                {
+                    var columnHeader = ((GridView) View).Columns[0].Header as GridViewColumnHeader;
+                    SetSorting(columnHeader);
+                }
+            }
         }
 
         private void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
         {
-            GridViewColumnHeader column = (sender as GridViewColumnHeader) ?? (e.OriginalSource as GridViewColumnHeader);
-            if (column == null)
+            GridViewColumnHeader columnHeader = (sender as GridViewColumnHeader) ?? (e.OriginalSource as GridViewColumnHeader);
+
+            SetSorting(columnHeader);
+        }
+
+        private void SetSorting(GridViewColumnHeader columnHeader)
+        {
+            if (columnHeader == null)
             { return; }
 
-            string sortBy = column.Tag.ToString();
+            string sortBy = columnHeader.Tag.ToString();
             if (_listViewSortCol != null)
             {
                 AdornerLayer.GetAdornerLayer(_listViewSortCol).Remove(_listViewSortAdorner);
@@ -30,12 +57,12 @@ namespace PathEditor.Views.UserControls
             }
 
             var newDir = ListSortDirection.Ascending;
-            if (_listViewSortCol == column && _listViewSortAdorner.Direction == newDir)
+            if (_listViewSortCol == columnHeader && _listViewSortAdorner.Direction == newDir)
             {
                 newDir = ListSortDirection.Descending;
             }
 
-            _listViewSortCol = column;
+            _listViewSortCol = columnHeader;
             _listViewSortAdorner = new SortAdorner(_listViewSortCol, newDir);
             AdornerLayer.GetAdornerLayer(_listViewSortCol).Add(_listViewSortAdorner);
             Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
